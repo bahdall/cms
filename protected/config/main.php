@@ -34,6 +34,13 @@ return array(
 			'debug'=>YII_DEBUG,
 		),
 		'core',
+
+		'gii'=>array(
+			'class'=>'system.gii.GiiModule',
+			'password'=>'225316111',
+			// If removed, Gii defaults to localhost only. Edit carefully to taste.
+			'ipFilters'=>array('*','::1'),
+		),
 	),
 
 	// application components
@@ -75,9 +82,9 @@ return array(
 			),
 		),
 		'db'=>array(
-			'connectionString'      => 'mysql:host=127.0.0.1;dbname=',
-			'username'=>'',
-			'password'=>'',
+			'connectionString'=>'mysql:host=127.0.0.1;dbname=cms.loc',
+			'username'=>'bahdall',
+			'password'=>'password_777',
 			'enableProfiling'       => YII_DEBUG, // Disable in production
 			'enableParamLogging'    => YII_DEBUG, // Disable in production
 			'emulatePrepare'        => true,

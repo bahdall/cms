@@ -174,7 +174,7 @@ class SystemModules extends BaseModel
 	{
 		$model = new SystemModules;
 		$model->name = $name;
-		$model->enabled = true;
+		$model->enabled = 1;
 
 		try {
 			Yii::trace('Module installed');
