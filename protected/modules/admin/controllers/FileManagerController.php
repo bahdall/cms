@@ -2,6 +2,20 @@
 
 class FileManagerController extends SAdminController
 {
+	public function actions()
+	{
+		return array(
+			'connector' => array(
+				'class' => 'ext.elfinder.ElFinderConnectorAction',
+				'settings' => array(
+					'root' => Yii::getPathOfAlias('webroot') . '/uploads/',
+					'URL' => Yii::app()->baseUrl . '/uploads/',
+					'rootAlias' => 'Home',
+					'mimeDetect' => 'none'
+				)
+			),
+		);
+	}
 	
 	public function actionIndex()
 	{

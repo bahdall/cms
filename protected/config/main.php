@@ -66,6 +66,7 @@ return array(
 				'admin/<module:\w+>/<controller:\w+>/<action:\w+>/*'=>'<module>/admin/<controller>/<action>',
 
 				'filemanager/connector' => 'admin/fileManager/index',
+				'filemanager/elfinderconnector' => 'admin/fileManager/connector',
 
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
@@ -81,16 +82,9 @@ return array(
 				'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
 			),
 		),
-		'db'=>array(
-			'connectionString'=>'mysql:host=127.0.0.1;dbname=cms.loc',
-			'username'=>'bahdall',
-			'password'=>'password_777',
-			'enableProfiling'       => YII_DEBUG, // Disable in production
-			'enableParamLogging'    => YII_DEBUG, // Disable in production
-			'emulatePrepare'        => true,
-			'schemaCachingDuration' => YII_DEBUG ? 0 : 3600,
-			'charset'               => 'utf8',
-		),
+
+		'db'	=> require(dirname(__FILE__) . '/database.php'),
+
 		'request'=>array(
 			'class'=>'SHttpRequest',
 			'enableCsrfValidation'=>true,

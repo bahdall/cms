@@ -59,6 +59,16 @@ class BannersImages extends BaseModel
 	}
 
 
+	public function scopes()
+	{
+		return array(
+			'sort' => array(
+				'order' => 't.sort DESC',
+			),
+		);
+	}
+
+
 
 	/**
 	 * @return array relational rules.
@@ -122,31 +132,6 @@ class BannersImages extends BaseModel
 				),
 			),
 		);
-	}
-
-	public function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
-	/**
-	 * Delete category pages and childs.
-	 * @return boolean
-	 */
-	public function beforeDelete()
-	{
-		return parent::beforeDelete();
-	}
-
-
-	public function afterSave()
-	{
-		return parent::afterSave();
-	}
-
-	public function afterDelete()
-	{
-		return parent::afterSave();
 	}
 
 

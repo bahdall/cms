@@ -23,7 +23,9 @@ $newImage = new BannersImages();
         display: none;
     }
     table.imagesEditTable {
-        cursor: pointer;
+    }
+    table.imagesEditTable td.desc-column{
+        width: 35%;
     }
 </style>
 

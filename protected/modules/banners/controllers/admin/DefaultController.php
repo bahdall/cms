@@ -40,7 +40,7 @@ class DefaultController extends SAdminController {
 		else
 		{
 			$model = Banners::model()->findByPk($_GET['id']);
-			$images = BannersImages::model()->language($_GET)->findAll('banner_id = :banner_id',array(
+			$images = BannersImages::model()->language($_GET)->sort()->findAll('banner_id = :banner_id',array(
 				'banner_id' => $model->id,
 			));
 		}
@@ -108,14 +108,38 @@ class DefaultController extends SAdminController {
 	{
 		if( isset($_POST['images']) )
 		{
+			foreach($model->images as $img)
+			{
+				if( !array_key_exists($img->id,$_POST['images']) )
+				{
+					$imgDelete = BannersImages::model()->findAllByPk($img->id);
+					foreach($imgDelete as $item)
+						$item->delete();
+				}
+			}
+
 			$count = count($_POST['images']);
 			foreach($_POST['images'] as $index => $image)
 			{
-				$newImage = new BannersImages();
-				$newImage->attributes = $image;
-				$newImage->banner_id = $model->id;
-				$newImage->sort = $count--;
-				$newImage->save();
+				$bannerImage = BannersImages::model()->language($_GET)->findByPk($index,'banner_id = :banner_id',array(
+					':banner_id' => $model->id,
+				));
+
+				if($bannerImage)
+				{
+					$bannerImage->attributes = $image;
+					$bannerImage->sort = $count--;
+					$bannerImage->save();
+				}
+				else
+				{
+					$newImage = new BannersImages();
+					$newImage->attributes = $image;
+					$newImage->banner_id = $model->id;
+					$newImage->sort = $count--;
+					$newImage->save();
+				}
+
 			}
 		}
 

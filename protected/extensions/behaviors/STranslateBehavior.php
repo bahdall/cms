@@ -142,6 +142,7 @@ class STranslateBehavior extends CActiveRecordBehavior
 		if($this->disableEvents)
 			return true;
 
+
 		$className = $this->owner->translateModelName;
 		$className::model()->deleteAll('object_id=:id',array(
 			':id'=>$this->owner->getPrimaryKey()
