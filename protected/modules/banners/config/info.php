@@ -12,4 +12,11 @@ return array(
 	'description'=>Yii::t('BannersModule.core', 'Управление баннерами сайта.'),
 	'config_url'  => Yii::app()->createUrl('/banners/admin/default/index'),
 	'url'=>'', # Url to module home page.
+	'widgets' => array(
+		'Sliders' => array(
+			'name' => 'SLIDERS',
+			'description' => 'jquery Slider',
+			'class' => 'application.modules.banners.widgets.Slider',
+		),
+	),
 );

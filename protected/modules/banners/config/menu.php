@@ -14,6 +14,11 @@ return array(
 				'url'=>array('/admin/banners'),
 				'position'=>3
 			),
+			array(
+				'label'=>Yii::t('BannersModule.core', 'Слайдеры'),
+				'url'=>array('/admin/banners/sliders'),
+				'position'=>3
+			),
 		),
 	),
 );

@@ -10,12 +10,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Дамп структуры базы данных cms.loc
-CREATE DATABASE IF NOT EXISTS `cms.loc` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `cms.loc`;
-
-
 -- Дамп структуры для таблица cms.loc.accounting1c
+DROP TABLE IF EXISTS `accounting1c`;
 CREATE TABLE IF NOT EXISTS `accounting1c` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -32,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `accounting1c` (
 
 
 -- Дамп структуры для таблица cms.loc.ActionLog
+DROP TABLE IF EXISTS `ActionLog`;
 CREATE TABLE IF NOT EXISTS `ActionLog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT NULL,
@@ -44,20 +41,25 @@ CREATE TABLE IF NOT EXISTS `ActionLog` (
   KEY `event` (`event`),
   KEY `datetime` (`datetime`),
   KEY `model_name` (`model_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.ActionLog: 5 rows
+-- Дамп данных таблицы cms.loc.ActionLog: 9 rows
 /*!40000 ALTER TABLE `ActionLog` DISABLE KEYS */;
 INSERT INTO `ActionLog` (`id`, `username`, `event`, `model_name`, `model_title`, `datetime`) VALUES
 	(1, 'admin', 3, 'SystemModules', 'pages', '2015-03-25 13:28:08'),
 	(2, 'admin', 3, 'SystemModules', 'pages', '2015-03-25 13:31:52'),
 	(3, 'admin', 1, 'SystemModules', 'pages', '2015-03-25 13:34:09'),
 	(4, 'admin', 1, 'SystemModules', 'pages', '2015-03-25 13:34:31'),
-	(5, 'admin', 1, 'SystemModules', 'banners', '2015-03-25 14:11:57');
+	(5, 'admin', 1, 'SystemModules', 'banners', '2015-03-25 14:11:57'),
+	(6, 'admin', 3, 'SystemModules', 'banners', '2015-03-26 12:26:34'),
+	(7, 'admin', 1, 'SystemModules', 'banners', '2015-03-26 12:26:56'),
+	(8, 'admin', 3, 'SystemModules', 'banners', '2015-03-26 14:56:40'),
+	(9, 'admin', 1, 'SystemModules', 'banners', '2015-03-26 14:56:43');
 /*!40000 ALTER TABLE `ActionLog` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица cms.loc.AuthAssignment
+DROP TABLE IF EXISTS `AuthAssignment`;
 CREATE TABLE IF NOT EXISTS `AuthAssignment` (
   `itemname` varchar(64) NOT NULL,
   `userid` varchar(64) NOT NULL,
@@ -81,6 +83,7 @@ INSERT INTO `AuthAssignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.AuthItem
+DROP TABLE IF EXISTS `AuthItem`;
 CREATE TABLE IF NOT EXISTS `AuthItem` (
   `name` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
@@ -115,6 +118,7 @@ INSERT INTO `AuthItem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.AuthItemChild
+DROP TABLE IF EXISTS `AuthItemChild`;
 CREATE TABLE IF NOT EXISTS `AuthItemChild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
@@ -128,21 +132,24 @@ CREATE TABLE IF NOT EXISTS `AuthItemChild` (
 
 
 -- Дамп структуры для таблица cms.loc.Banners
+DROP TABLE IF EXISTS `Banners`;
 CREATE TABLE IF NOT EXISTS `Banners` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы cms.loc.Banners: ~0 rows (приблизительно)
 /*!40000 ALTER TABLE `Banners` DISABLE KEYS */;
 INSERT INTO `Banners` (`id`, `name`, `status`) VALUES
-	(1, 'test', 1);
+	(1, 'test', 1),
+	(2, 'test2', 1);
 /*!40000 ALTER TABLE `Banners` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица cms.loc.BannersImages
+DROP TABLE IF EXISTS `BannersImages`;
 CREATE TABLE IF NOT EXISTS `BannersImages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `banner_id` int(11) NOT NULL DEFAULT '0',
@@ -150,18 +157,21 @@ CREATE TABLE IF NOT EXISTS `BannersImages` (
   `sort` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `banner_id` (`banner_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.BannersImages: ~0 rows (приблизительно)
+-- Дамп данных таблицы cms.loc.BannersImages: ~4 rows (приблизительно)
 /*!40000 ALTER TABLE `BannersImages` DISABLE KEYS */;
 INSERT INTO `BannersImages` (`id`, `banner_id`, `image`, `sort`) VALUES
-	(20, 1, 'safadsfdsafdsa', 4),
-	(21, 1, 'fadsfdsaf', 3),
-	(22, 1, 'fadsfdsaf', 2);
+	(20, 1, '/uploads/banners/Koala.jpg', 4),
+	(21, 1, '/uploads/importImages/AsusTransformerPadPrime20164Gb.jpg', 3),
+	(22, 1, '/uploads/product/22_-1188437959.jpg', 2),
+	(23, 2, '/uploads/banners/Koala.jpg', 2),
+	(26, 2, '/uploads/product/12_-1816129508.jpg', 3);
 /*!40000 ALTER TABLE `BannersImages` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица cms.loc.BannersImagesTranslate
+DROP TABLE IF EXISTS `BannersImagesTranslate`;
 CREATE TABLE IF NOT EXISTS `BannersImagesTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) NOT NULL,
@@ -172,9 +182,9 @@ CREATE TABLE IF NOT EXISTS `BannersImagesTranslate` (
   PRIMARY KEY (`id`),
   KEY `object_id` (`object_id`),
   KEY `language_id` (`language_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.BannersImagesTranslate: ~0 rows (приблизительно)
+-- Дамп данных таблицы cms.loc.BannersImagesTranslate: ~8 rows (приблизительно)
 /*!40000 ALTER TABLE `BannersImagesTranslate` DISABLE KEYS */;
 INSERT INTO `BannersImagesTranslate` (`id`, `object_id`, `language_id`, `title`, `description`, `link`) VALUES
 	(39, 20, 1, 'test', 'test', 'dsafdasfdsafd'),
@@ -182,11 +192,16 @@ INSERT INTO `BannersImagesTranslate` (`id`, `object_id`, `language_id`, `title`,
 	(41, 21, 1, '2253161111111', 'bhjbhjbjhb', 'hjbjbhjbjh'),
 	(42, 21, 9, '2253161111111', 'bhjbhjbjhb', 'hjbjbhjbjh'),
 	(43, 22, 1, '147852369', 'bhjbhjbjhb', 'hjbjbhjbjh'),
-	(44, 22, 9, '147852369', 'bhjbhjbjhb', 'hjbjbhjbjh');
+	(44, 22, 9, '147852369', 'bhjbhjbjhb', 'hjbjbhjbjh'),
+	(45, 23, 1, 'fdsafdsafads', 'fdsafdsafdsa', 'fsdafdsafads'),
+	(46, 23, 9, 'fdsafdsafads', 'fdsafdsafdsa', 'fsdafdsafads'),
+	(51, 26, 1, 'dsafdsaf', 'dsafdsafsadf', 'sdafsdafdsaf'),
+	(52, 26, 9, 'dsafdsaf', 'dsafdsafsadf', 'sdafsdafdsaf');
 /*!40000 ALTER TABLE `BannersImagesTranslate` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица cms.loc.Comments
+DROP TABLE IF EXISTS `Comments`;
 CREATE TABLE IF NOT EXISTS `Comments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT '0',
@@ -210,6 +225,7 @@ CREATE TABLE IF NOT EXISTS `Comments` (
 
 
 -- Дамп структуры для таблица cms.loc.Discount
+DROP TABLE IF EXISTS `Discount`;
 CREATE TABLE IF NOT EXISTS `Discount` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
@@ -232,6 +248,7 @@ INSERT INTO `Discount` (`id`, `name`, `active`, `sum`, `start_date`, `end_date`,
 
 
 -- Дамп структуры для таблица cms.loc.DiscountCategory
+DROP TABLE IF EXISTS `DiscountCategory`;
 CREATE TABLE IF NOT EXISTS `DiscountCategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
@@ -257,6 +274,7 @@ INSERT INTO `DiscountCategory` (`id`, `discount_id`, `category_id`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.DiscountManufacturer
+DROP TABLE IF EXISTS `DiscountManufacturer`;
 CREATE TABLE IF NOT EXISTS `DiscountManufacturer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `discount_id` int(11) DEFAULT NULL,
@@ -274,6 +292,7 @@ INSERT INTO `DiscountManufacturer` (`id`, `discount_id`, `manufacturer_id`) VALU
 
 
 -- Дамп структуры для таблица cms.loc.grid_view_filter
+DROP TABLE IF EXISTS `grid_view_filter`;
 CREATE TABLE IF NOT EXISTS `grid_view_filter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -289,6 +308,7 @@ CREATE TABLE IF NOT EXISTS `grid_view_filter` (
 
 
 -- Дамп структуры для таблица cms.loc.notifications
+DROP TABLE IF EXISTS `notifications`;
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -303,6 +323,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
 
 
 -- Дамп структуры для таблица cms.loc.Order
+DROP TABLE IF EXISTS `Order`;
 CREATE TABLE IF NOT EXISTS `Order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -335,6 +356,7 @@ CREATE TABLE IF NOT EXISTS `Order` (
 
 
 -- Дамп структуры для таблица cms.loc.OrderHistory
+DROP TABLE IF EXISTS `OrderHistory`;
 CREATE TABLE IF NOT EXISTS `OrderHistory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) DEFAULT NULL,
@@ -355,6 +377,7 @@ CREATE TABLE IF NOT EXISTS `OrderHistory` (
 
 
 -- Дамп структуры для таблица cms.loc.OrderProduct
+DROP TABLE IF EXISTS `OrderProduct`;
 CREATE TABLE IF NOT EXISTS `OrderProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
@@ -379,6 +402,7 @@ CREATE TABLE IF NOT EXISTS `OrderProduct` (
 
 
 -- Дамп структуры для таблица cms.loc.OrderStatus
+DROP TABLE IF EXISTS `OrderStatus`;
 CREATE TABLE IF NOT EXISTS `OrderStatus` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
@@ -396,6 +420,7 @@ INSERT INTO `OrderStatus` (`id`, `name`, `position`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.Page
+DROP TABLE IF EXISTS `Page`;
 CREATE TABLE IF NOT EXISTS `Page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -431,6 +456,7 @@ INSERT INTO `Page` (`id`, `user_id`, `category_id`, `url`, `created`, `updated`,
 
 
 -- Дамп структуры для таблица cms.loc.PageCategory
+DROP TABLE IF EXISTS `PageCategory`;
 CREATE TABLE IF NOT EXISTS `PageCategory` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) DEFAULT NULL,
@@ -458,6 +484,7 @@ INSERT INTO `PageCategory` (`id`, `parent_id`, `url`, `full_url`, `layout`, `vie
 
 
 -- Дамп структуры для таблица cms.loc.PageCategoryTranslate
+DROP TABLE IF EXISTS `PageCategoryTranslate`;
 CREATE TABLE IF NOT EXISTS `PageCategoryTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) NOT NULL,
@@ -485,6 +512,7 @@ INSERT INTO `PageCategoryTranslate` (`id`, `object_id`, `language_id`, `name`, `
 
 
 -- Дамп структуры для таблица cms.loc.PageTranslate
+DROP TABLE IF EXISTS `PageTranslate`;
 CREATE TABLE IF NOT EXISTS `PageTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) NOT NULL,
@@ -521,6 +549,7 @@ INSERT INTO `PageTranslate` (`id`, `object_id`, `language_id`, `title`, `short_d
 
 
 -- Дамп структуры для таблица cms.loc.Rights
+DROP TABLE IF EXISTS `Rights`;
 CREATE TABLE IF NOT EXISTS `Rights` (
   `itemname` varchar(64) NOT NULL,
   `type` int(11) DEFAULT NULL,
@@ -534,6 +563,7 @@ CREATE TABLE IF NOT EXISTS `Rights` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreAttribute
+DROP TABLE IF EXISTS `StoreAttribute`;
 CREATE TABLE IF NOT EXISTS `StoreAttribute` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
@@ -580,6 +610,7 @@ INSERT INTO `StoreAttribute` (`id`, `name`, `type`, `display_on_front`, `use_in_
 
 
 -- Дамп структуры для таблица cms.loc.StoreAttributeOption
+DROP TABLE IF EXISTS `StoreAttributeOption`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeOption` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_id` int(11) DEFAULT NULL,
@@ -671,6 +702,7 @@ INSERT INTO `StoreAttributeOption` (`id`, `attribute_id`, `position`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.StoreAttributeOptionTranslate
+DROP TABLE IF EXISTS `StoreAttributeOptionTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeOptionTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `language_id` int(11) DEFAULT NULL,
@@ -838,6 +870,7 @@ INSERT INTO `StoreAttributeOptionTranslate` (`id`, `language_id`, `object_id`, `
 
 
 -- Дамп структуры для таблица cms.loc.StoreAttributeTranslate
+DROP TABLE IF EXISTS `StoreAttributeTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreAttributeTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -893,6 +926,7 @@ INSERT INTO `StoreAttributeTranslate` (`id`, `object_id`, `language_id`, `title`
 
 
 -- Дамп структуры для таблица cms.loc.StoreCategory
+DROP TABLE IF EXISTS `StoreCategory`;
 CREATE TABLE IF NOT EXISTS `StoreCategory` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `lft` int(10) unsigned DEFAULT NULL,
@@ -927,6 +961,7 @@ INSERT INTO `StoreCategory` (`id`, `lft`, `rgt`, `level`, `url`, `full_path`, `l
 
 
 -- Дамп структуры для таблица cms.loc.StoreCategoryTranslate
+DROP TABLE IF EXISTS `StoreCategoryTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreCategoryTranslate` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -971,6 +1006,7 @@ INSERT INTO `StoreCategoryTranslate` (`id`, `object_id`, `language_id`, `name`, 
 
 
 -- Дамп структуры для таблица cms.loc.StoreCurrency
+DROP TABLE IF EXISTS `StoreCurrency`;
 CREATE TABLE IF NOT EXISTS `StoreCurrency` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
@@ -991,6 +1027,7 @@ INSERT INTO `StoreCurrency` (`id`, `name`, `iso`, `symbol`, `rate`, `main`, `def
 
 
 -- Дамп структуры для таблица cms.loc.StoreDeliveryMethod
+DROP TABLE IF EXISTS `StoreDeliveryMethod`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryMethod` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `price` float(10,2) DEFAULT '0.00',
@@ -1011,6 +1048,7 @@ INSERT INTO `StoreDeliveryMethod` (`id`, `price`, `free_from`, `position`, `acti
 
 
 -- Дамп структуры для таблица cms.loc.StoreDeliveryMethodTranslate
+DROP TABLE IF EXISTS `StoreDeliveryMethodTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryMethodTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -1035,6 +1073,7 @@ INSERT INTO `StoreDeliveryMethodTranslate` (`id`, `object_id`, `language_id`, `n
 
 
 -- Дамп структуры для таблица cms.loc.StoreDeliveryPayment
+DROP TABLE IF EXISTS `StoreDeliveryPayment`;
 CREATE TABLE IF NOT EXISTS `StoreDeliveryPayment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `delivery_id` int(11) DEFAULT NULL,
@@ -1068,6 +1107,7 @@ INSERT INTO `StoreDeliveryPayment` (`id`, `delivery_id`, `payment_id`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.StoreManufacturer
+DROP TABLE IF EXISTS `StoreManufacturer`;
 CREATE TABLE IF NOT EXISTS `StoreManufacturer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(255) DEFAULT '',
@@ -1102,6 +1142,7 @@ INSERT INTO `StoreManufacturer` (`id`, `url`, `layout`, `view`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.StoreManufacturerTranslate
+DROP TABLE IF EXISTS `StoreManufacturerTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreManufacturerTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -1159,6 +1200,7 @@ INSERT INTO `StoreManufacturerTranslate` (`id`, `object_id`, `language_id`, `nam
 
 
 -- Дамп структуры для таблица cms.loc.StorePaymentMethod
+DROP TABLE IF EXISTS `StorePaymentMethod`;
 CREATE TABLE IF NOT EXISTS `StorePaymentMethod` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `currency_id` int(11) DEFAULT NULL,
@@ -1181,6 +1223,7 @@ INSERT INTO `StorePaymentMethod` (`id`, `currency_id`, `active`, `payment_system
 
 
 -- Дамп структуры для таблица cms.loc.StorePaymentMethodTranslate
+DROP TABLE IF EXISTS `StorePaymentMethodTranslate`;
 CREATE TABLE IF NOT EXISTS `StorePaymentMethodTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -1209,6 +1252,7 @@ INSERT INTO `StorePaymentMethodTranslate` (`id`, `object_id`, `language_id`, `na
 
 
 -- Дамп структуры для таблица cms.loc.StoreProduct
+DROP TABLE IF EXISTS `StoreProduct`;
 CREATE TABLE IF NOT EXISTS `StoreProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `manufacturer_id` int(11) DEFAULT NULL,
@@ -1296,6 +1340,7 @@ INSERT INTO `StoreProduct` (`id`, `manufacturer_id`, `type_id`, `use_configurati
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductAttributeEAV
+DROP TABLE IF EXISTS `StoreProductAttributeEAV`;
 CREATE TABLE IF NOT EXISTS `StoreProductAttributeEAV` (
   `entity` int(11) unsigned NOT NULL,
   `attribute` varchar(250) DEFAULT '',
@@ -1495,6 +1540,7 @@ INSERT INTO `StoreProductAttributeEAV` (`entity`, `attribute`, `value`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductCategoryRef
+DROP TABLE IF EXISTS `StoreProductCategoryRef`;
 CREATE TABLE IF NOT EXISTS `StoreProductCategoryRef` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product` int(11) DEFAULT NULL,
@@ -1583,6 +1629,7 @@ INSERT INTO `StoreProductCategoryRef` (`id`, `product`, `category`, `is_main`) V
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductConfigurableAttributes
+DROP TABLE IF EXISTS `StoreProductConfigurableAttributes`;
 CREATE TABLE IF NOT EXISTS `StoreProductConfigurableAttributes` (
   `product_id` int(11) NOT NULL COMMENT 'Attributes available to configure product',
   `attribute_id` int(11) NOT NULL,
@@ -1595,6 +1642,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductConfigurableAttributes` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductConfigurations
+DROP TABLE IF EXISTS `StoreProductConfigurations`;
 CREATE TABLE IF NOT EXISTS `StoreProductConfigurations` (
   `product_id` int(11) NOT NULL COMMENT 'Saves relations beetwen product and configurations',
   `configurable_id` int(11) NOT NULL,
@@ -1607,6 +1655,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductConfigurations` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductImage
+DROP TABLE IF EXISTS `StoreProductImage`;
 CREATE TABLE IF NOT EXISTS `StoreProductImage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1669,6 +1718,7 @@ INSERT INTO `StoreProductImage` (`id`, `product_id`, `name`, `is_main`, `uploade
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductTranslate
+DROP TABLE IF EXISTS `StoreProductTranslate`;
 CREATE TABLE IF NOT EXISTS `StoreProductTranslate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `object_id` int(11) DEFAULT NULL,
@@ -1779,6 +1829,7 @@ INSERT INTO `StoreProductTranslate` (`id`, `object_id`, `language_id`, `name`, `
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductType
+DROP TABLE IF EXISTS `StoreProductType`;
 CREATE TABLE IF NOT EXISTS `StoreProductType` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
@@ -1800,6 +1851,7 @@ INSERT INTO `StoreProductType` (`id`, `name`, `categories_preset`, `main_categor
 
 
 -- Дамп структуры для таблица cms.loc.StoreProductVariant
+DROP TABLE IF EXISTS `StoreProductVariant`;
 CREATE TABLE IF NOT EXISTS `StoreProductVariant` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `attribute_id` int(11) DEFAULT NULL,
@@ -1820,6 +1872,7 @@ CREATE TABLE IF NOT EXISTS `StoreProductVariant` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreRelatedProduct
+DROP TABLE IF EXISTS `StoreRelatedProduct`;
 CREATE TABLE IF NOT EXISTS `StoreRelatedProduct` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
@@ -1834,6 +1887,7 @@ CREATE TABLE IF NOT EXISTS `StoreRelatedProduct` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreTypeAttribute
+DROP TABLE IF EXISTS `StoreTypeAttribute`;
 CREATE TABLE IF NOT EXISTS `StoreTypeAttribute` (
   `type_id` int(11) NOT NULL,
   `attribute_id` int(11) NOT NULL,
@@ -1866,6 +1920,7 @@ INSERT INTO `StoreTypeAttribute` (`type_id`, `attribute_id`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.StoreWishlist
+DROP TABLE IF EXISTS `StoreWishlist`;
 CREATE TABLE IF NOT EXISTS `StoreWishlist` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(10) DEFAULT '',
@@ -1881,6 +1936,7 @@ CREATE TABLE IF NOT EXISTS `StoreWishlist` (
 
 
 -- Дамп структуры для таблица cms.loc.StoreWishlistProducts
+DROP TABLE IF EXISTS `StoreWishlistProducts`;
 CREATE TABLE IF NOT EXISTS `StoreWishlistProducts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `wishlist_id` int(11) DEFAULT NULL,
@@ -1898,6 +1954,7 @@ CREATE TABLE IF NOT EXISTS `StoreWishlistProducts` (
 
 
 -- Дамп структуры для таблица cms.loc.SystemLanguage
+DROP TABLE IF EXISTS `SystemLanguage`;
 CREATE TABLE IF NOT EXISTS `SystemLanguage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) DEFAULT '',
@@ -1917,14 +1974,52 @@ INSERT INTO `SystemLanguage` (`id`, `name`, `code`, `locale`, `default`, `flag_n
 /*!40000 ALTER TABLE `SystemLanguage` ENABLE KEYS */;
 
 
+-- Дамп структуры для таблица cms.loc.SystemLayouts
+DROP TABLE IF EXISTS `SystemLayouts`;
+CREATE TABLE IF NOT EXISTS `SystemLayouts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) NOT NULL,
+  `route` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы cms.loc.SystemLayouts: ~2 rows (приблизительно)
+/*!40000 ALTER TABLE `SystemLayouts` DISABLE KEYS */;
+INSERT INTO `SystemLayouts` (`id`, `name`, `route`) VALUES
+	(1, 'default', '*/*/*');
+/*!40000 ALTER TABLE `SystemLayouts` ENABLE KEYS */;
+
+
+-- Дамп структуры для таблица cms.loc.SystemLayoutsWidgets
+DROP TABLE IF EXISTS `SystemLayoutsWidgets`;
+CREATE TABLE IF NOT EXISTS `SystemLayoutsWidgets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `layout_id` int(11) NOT NULL,
+  `widget_id` int(11) NOT NULL,
+  `position` varchar(50) NOT NULL,
+  `sort` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `layout_id` (`layout_id`),
+  KEY `widget_id` (`widget_id`),
+  KEY `position` (`position`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы cms.loc.SystemLayoutsWidgets: ~4 rows (приблизительно)
+/*!40000 ALTER TABLE `SystemLayoutsWidgets` DISABLE KEYS */;
+INSERT INTO `SystemLayoutsWidgets` (`id`, `layout_id`, `widget_id`, `position`, `sort`) VALUES
+	(11, 1, 2, 'Top', 5);
+/*!40000 ALTER TABLE `SystemLayoutsWidgets` ENABLE KEYS */;
+
+
 -- Дамп структуры для таблица cms.loc.SystemModules
+DROP TABLE IF EXISTS `SystemModules`;
 CREATE TABLE IF NOT EXISTS `SystemModules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT '',
   `enabled` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы cms.loc.SystemModules: 18 rows
 /*!40000 ALTER TABLE `SystemModules` DISABLE KEYS */;
@@ -1946,11 +2041,12 @@ INSERT INTO `SystemModules` (`id`, `name`, `enabled`) VALUES
 	(54, 'notifier', 1),
 	(55, 'statistics', 1),
 	(56, 'sitemap', 1),
-	(60, 'banners', 1);
+	(62, 'banners', 1);
 /*!40000 ALTER TABLE `SystemModules` ENABLE KEYS */;
 
 
 -- Дамп структуры для таблица cms.loc.SystemSettings
+DROP TABLE IF EXISTS `SystemSettings`;
 CREATE TABLE IF NOT EXISTS `SystemSettings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category` varchar(255) DEFAULT '',
@@ -2008,7 +2104,31 @@ INSERT INTO `SystemSettings` (`id`, `category`, `key`, `value`) VALUES
 /*!40000 ALTER TABLE `SystemSettings` ENABLE KEYS */;
 
 
+-- Дамп структуры для таблица cms.loc.SystemWidgets
+DROP TABLE IF EXISTS `SystemWidgets`;
+CREATE TABLE IF NOT EXISTS `SystemWidgets` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `module_id` int(11) NOT NULL,
+  `group` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `description` text,
+  `class` varchar(100) DEFAULT NULL,
+  `params` text,
+  `status` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `module_id` (`module_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы cms.loc.SystemWidgets: ~2 rows (приблизительно)
+/*!40000 ALTER TABLE `SystemWidgets` DISABLE KEYS */;
+INSERT INTO `SystemWidgets` (`id`, `module_id`, `group`, `name`, `description`, `class`, `params`, `status`) VALUES
+	(3, 1, 'fdsafa', 'jkb', 'hbhjbjh', 'bjhbjh', NULL, 1),
+	(5, 62, 'sliders', 'home slider', NULL, 'application.modules.banners.widgets.Slider', 'a:3:{s:5:"width";s:3:"600";s:6:"height";s:3:"600";s:9:"banner_id";s:1:"2";}', 1);
+/*!40000 ALTER TABLE `SystemWidgets` ENABLE KEYS */;
+
+
 -- Дамп структуры для таблица cms.loc.tbl_migration
+DROP TABLE IF EXISTS `tbl_migration`;
 CREATE TABLE IF NOT EXISTS `tbl_migration` (
   `version` varchar(255) NOT NULL,
   `apply_time` int(11) DEFAULT NULL,
@@ -2035,6 +2155,7 @@ INSERT INTO `tbl_migration` (`version`, `apply_time`) VALUES
 
 
 -- Дамп структуры для таблица cms.loc.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) DEFAULT '',
@@ -2058,6 +2179,7 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `created_at`, `last_l
 
 
 -- Дамп структуры для таблица cms.loc.user_profile
+DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,

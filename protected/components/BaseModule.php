@@ -10,6 +10,7 @@
 class BaseModule extends CWebModule {
 
 	public $_assetsUrl = null;
+	public $_module_id;
 
 	public function initAdmin()
 	{
@@ -18,6 +19,12 @@ class BaseModule extends CWebModule {
 			'admin.components.*',
 			'admin.widgets.*',
 		));
+
+		$module = SystemModules::model()->find('name = :name',array(
+			':name' => $this->id,
+		));
+
+		if($module)$this->_module_id = $module->id;
 	}
 
 	/**

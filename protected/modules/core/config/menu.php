@@ -24,6 +24,11 @@ return array(
 				'url'=>Yii::app()->createUrl('core/admin/systemLanguages'),
 				'position'=>4
 			),
+			array(
+				'label'=>Yii::t('CoreModule.core', 'Слои'),
+				'url'=>Yii::app()->createUrl('core/admin/systemLayouts'),
+				'position'=>5
+			),
 		),
 	),
 );

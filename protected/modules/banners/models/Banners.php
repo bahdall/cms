@@ -58,6 +58,16 @@ class Banners extends BaseModel
 	}
 
 
+	public function scopes()
+	{
+		return array(
+			'active' => array(
+				'condition' => 'status !=0'
+			),
+		);
+	}
+
+
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -128,6 +138,14 @@ class Banners extends BaseModel
 	{
 
 		return parent::beforeSave();
+	}
+
+
+	public static function getBanners()
+	{
+		$model = Banners::model()->active()->findAll();
+
+		return CHtml::listData($model,'id','name');
 	}
 
 
