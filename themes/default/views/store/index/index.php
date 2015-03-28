@@ -3,11 +3,11 @@
 /**
  * Site start view
  */
+$src = '/themes/default/assets/images/mainPageBanner.png';
+$src2 = '/themes/default/assets/images/temp/banner.jpg';
 ?>
 
-<div class="banners" align="center">
-	<a href="/products/search/q/Apple"><img src="/themes/default/assets/images/mainPageBanner.png"></a>
-</div>
+<div style="clear: both; margin-bottom: 60px"></div>
 
 <div class="wide_line">
 	<span>Популярные товары</span>

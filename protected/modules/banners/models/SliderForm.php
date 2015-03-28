@@ -14,7 +14,7 @@ class SliderForm extends CFormModel
     public $status;
     public $module_id;
     public $group = 'sliders';
-    public $class = 'application.modules.banners.widgets.Slider';
+    public $class = 'application.modules.banners.widgets.nivoslider.ENivoSlider';
 
 
 

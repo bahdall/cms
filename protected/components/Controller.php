@@ -81,4 +81,28 @@ class Controller extends RController
 			$title=$this->_pageTitle.=' / '.$title;
 		return $title;
 	}
+
+
+	public function runLayout($position)
+	{
+		$route = $this->module->id."/".$this->id."/".$this->action->id;
+
+		$layout = SystemLayouts::model()->orderById()->find(':route LIKE route',array(
+			':route' => $route,
+		));
+
+		$layoutWidgets = SystemLayoutsWidgets::model()->sort()->findAll('layout_id = :layout_id AND position = :position',array(
+			':layout_id' => $layout->id,
+			':position'  => $position,
+		));
+
+		foreach($layoutWidgets as $layoutWidget)
+		{
+			$widget = $layoutWidget->widget;
+			if($widget)
+				$this->widget($widget->class,$widget->getParams());
+		}
+
+	}
+
 }

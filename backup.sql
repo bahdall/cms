@@ -166,7 +166,7 @@ INSERT INTO `BannersImages` (`id`, `banner_id`, `image`, `sort`) VALUES
 	(21, 1, '/uploads/importImages/AsusTransformerPadPrime20164Gb.jpg', 3),
 	(22, 1, '/uploads/product/22_-1188437959.jpg', 2),
 	(23, 2, '/uploads/banners/Koala.jpg', 2),
-	(26, 2, '/uploads/product/12_-1816129508.jpg', 3);
+	(26, 2, '/uploads/banners/Penguins.jpg', 3);
 /*!40000 ALTER TABLE `BannersImages` ENABLE KEYS */;
 
 
@@ -193,9 +193,9 @@ INSERT INTO `BannersImagesTranslate` (`id`, `object_id`, `language_id`, `title`,
 	(42, 21, 9, '2253161111111', 'bhjbhjbjhb', 'hjbjbhjbjh'),
 	(43, 22, 1, '147852369', 'bhjbhjbjhb', 'hjbjbhjbjh'),
 	(44, 22, 9, '147852369', 'bhjbhjbjhb', 'hjbjbhjbjh'),
-	(45, 23, 1, 'fdsafdsafads', 'fdsafdsafdsa', 'fsdafdsafads'),
+	(45, 23, 1, 'fdsafdsafads', 'fdsafdsafdsa', ''),
 	(46, 23, 9, 'fdsafdsafads', 'fdsafdsafdsa', 'fsdafdsafads'),
-	(51, 26, 1, 'dsafdsaf', 'dsafdsafsadf', 'sdafsdafdsaf'),
+	(51, 26, 1, 'dsafdsaf', 'dsafdsafsadf', ''),
 	(52, 26, 9, 'dsafdsaf', 'dsafdsafsadf', 'sdafsdafdsaf');
 /*!40000 ALTER TABLE `BannersImagesTranslate` ENABLE KEYS */;
 
@@ -1981,12 +1981,14 @@ CREATE TABLE IF NOT EXISTS `SystemLayouts` (
   `name` varchar(50) NOT NULL,
   `route` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы cms.loc.SystemLayouts: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemLayouts` DISABLE KEYS */;
 INSERT INTO `SystemLayouts` (`id`, `name`, `route`) VALUES
-	(1, 'default', '*/*/*');
+	(1, 'default', '%/%/%'),
+	(2, 'index', 'store/index/index'),
+	(3, 'страницы сайта', 'pages/pages/%');
 /*!40000 ALTER TABLE `SystemLayouts` ENABLE KEYS */;
 
 
@@ -2002,12 +2004,13 @@ CREATE TABLE IF NOT EXISTS `SystemLayoutsWidgets` (
   KEY `layout_id` (`layout_id`),
   KEY `widget_id` (`widget_id`),
   KEY `position` (`position`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы cms.loc.SystemLayoutsWidgets: ~4 rows (приблизительно)
+-- Дамп данных таблицы cms.loc.SystemLayoutsWidgets: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemLayoutsWidgets` DISABLE KEYS */;
 INSERT INTO `SystemLayoutsWidgets` (`id`, `layout_id`, `widget_id`, `position`, `sort`) VALUES
-	(11, 1, 2, 'Top', 5);
+	(14, 2, 5, 'Top', 0),
+	(15, 3, 5, 'Top', 0);
 /*!40000 ALTER TABLE `SystemLayoutsWidgets` ENABLE KEYS */;
 
 
@@ -2117,13 +2120,12 @@ CREATE TABLE IF NOT EXISTS `SystemWidgets` (
   `status` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `module_id` (`module_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Дамп данных таблицы cms.loc.SystemWidgets: ~2 rows (приблизительно)
 /*!40000 ALTER TABLE `SystemWidgets` DISABLE KEYS */;
 INSERT INTO `SystemWidgets` (`id`, `module_id`, `group`, `name`, `description`, `class`, `params`, `status`) VALUES
-	(3, 1, 'fdsafa', 'jkb', 'hbhjbjh', 'bjhbjh', NULL, 1),
-	(5, 62, 'sliders', 'home slider', NULL, 'application.modules.banners.widgets.Slider', 'a:3:{s:5:"width";s:3:"600";s:6:"height";s:3:"600";s:9:"banner_id";s:1:"2";}', 1);
+	(5, 62, 'sliders', 'home slider', NULL, 'application.modules.banners.widgets.nivoslider.NivoSlider', 'a:3:{s:5:"width";s:4:"1000";s:6:"height";s:3:"500";s:9:"banner_id";s:1:"2";}', 1);
 /*!40000 ALTER TABLE `SystemWidgets` ENABLE KEYS */;
 
 

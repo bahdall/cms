@@ -41,6 +41,12 @@ class SystemLayouts extends BaseModel
 	}
 
 
+	public function scopes()
+	{
+		return array(
+			'orderById' => array('order' => 'id DESC'),
+		);
+	}
 
 
 	public function relations()

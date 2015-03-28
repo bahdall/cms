@@ -149,6 +149,10 @@
 		</div>
 	<?php endif; ?>
 
+	<?
+	$this->runLayout("top");
+	?>
+
 	<?php echo $content; ?>
 </div><!-- content end -->
 

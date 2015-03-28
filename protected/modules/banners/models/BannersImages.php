@@ -1,6 +1,7 @@
 <?php
 
 Yii::import('application.modules.banners.models.BannersImagesTranslate');
+Yii::import('application.modules.store.components.StoreImagesConfig');
 
 /**
  * This is the model class for table "BannersImages".
@@ -132,6 +133,45 @@ class BannersImages extends BaseModel
 				),
 			),
 		);
+	}
+
+
+
+	public function getUrl($size = false, $resizeMethod = false, $random = false)
+	{
+		if($size !== false)
+		{
+
+			$thumbPath = Yii::getPathOfAlias(StoreImagesConfig::get('thumbPath')).'/'.$size;
+			if(!file_exists($thumbPath))
+				mkdir($thumbPath, 0777, true);
+
+			// Path to source image
+			$fullPath  = Yii::getPathOfAlias('webroot').$this->image;
+			$imageName = explode('/',$this->image);
+			$imageName = array_pop($imageName);
+			// Path to thumb
+			$thumbPath = $thumbPath.'/'.$imageName;
+
+
+			if(!file_exists($thumbPath))
+			{
+				// Resize if needed
+				Yii::import('ext.phpthumb.PhpThumbFactory');
+				$sizes  = explode('x', $size);
+				$thumb  = PhpThumbFactory::create($fullPath);
+
+				if($resizeMethod === false)
+					$resizeMethod = StoreImagesConfig::get('resizeThumbMethod');
+				$thumb->$resizeMethod($sizes[0],$sizes[1])->save($thumbPath);
+			}
+
+			return StoreImagesConfig::get('thumbUrl').$size.'/'.$imageName;
+		}
+
+		if ($random === true)
+			return StoreImagesConfig::get('url').$this->image.'?'.rand(1, 10000);
+		return StoreImagesConfig::get('url').$this->image;
 	}
 
 

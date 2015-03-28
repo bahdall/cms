@@ -59,6 +59,13 @@ class SystemLayoutsWidgets extends BaseModel
 	}
 
 
+	public function scopes(){
+		return array(
+			'sort' => array('order' => 'sort DESC'),
+		);
+	}
+
+
 
 	/**
 	 * @return array customized attribute labels (name=>label)

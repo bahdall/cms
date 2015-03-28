@@ -8,6 +8,7 @@ class CoreModule extends BaseModule {
 	{
 		$this->setImport(array(
 			'application.modules.core.models.*',
+			'application.modules.core.helpers.*',
 		));
 	}
 

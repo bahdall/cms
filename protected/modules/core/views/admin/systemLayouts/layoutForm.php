@@ -17,7 +17,7 @@ return array(
                 ),
                 'route'=>array(
                     'type'=>'text',
-                    'hint'=>Yii::t('CoreModule.core', 'Например: store/Category/*'),
+                    'hint'=>Yii::t('CoreModule.core', 'Например: store/Category/%'),
                 ),
             ),
         ),
