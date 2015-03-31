@@ -20,7 +20,7 @@ class SElrteArea extends CInputWidget
 			);
 
 			$cs=Yii::app()->clientScript;
-			
+
 			// Elrte
 			$cs->registerCssFile($assetsUrl.'/elrte/css/elrte.min.css');
 			$cs->registerScriptFile($assetsUrl.'/elrte/js/elrte.min.js');
@@ -33,7 +33,7 @@ class SElrteArea extends CInputWidget
 
 			$cs->registerScriptFile($assetsUrl.'/helper.js');
 		}
-	
+
 		parent::init();
 	}
 

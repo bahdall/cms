@@ -78,7 +78,8 @@
 		</div>
 		<div class="middle">
 			<span class="icon phone"></span>
-			(099) <span class="big_text">111-222-333</span>
+			<?$this->widget( 'application.modules.core.widgets.IncludeFile.IncludeFile' ,array('file' => 'phone'))?>
+
 
 			<div class="currencies">
 				<?php echo Yii::t('core','Валюта:') ?>
@@ -183,7 +184,7 @@
 		<div class="right">
 			Контактная информация
 			<br/>
-			(099) <span class="big_text">111-222-333</span>
+			<?$this->widget( 'application.modules.core.widgets.IncludeFile.IncludeFile' ,array('file' => 'phone'))?>
 		</div>
 	</div>
 </div>

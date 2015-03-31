@@ -11,6 +11,10 @@ return array(
 	// pre-loading components
 	'preload'=>array('log'),
 
+	'aliases' => array(
+		'IncludeFile' => 'application.modules.core.widgets.IncludeFile.IncludeFile',
+	),
+
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',

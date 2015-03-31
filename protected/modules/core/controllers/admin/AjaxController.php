@@ -12,4 +12,25 @@ class AjaxController extends SAdminController
 			'orders'   => (int ) Order::model()->new()->count(),
 		));
 	}
+
+
+	public function actionSaveFile()
+	{
+		if($_POST)
+		{
+			$fileName = Yii::app()->request->getPost("FileName");
+			$fileContent = Yii::app()->request->getPost("FileContent");
+
+			if( file_exists($fileName) )
+			{
+				file_put_contents($fileName, $fileContent );
+				echo Yii::t('CoreModule.core','Успешно');
+			}
+			else
+			{
+				echo Yii::t('CoreModule.core','Файл не доступен для записи');
+			}
+
+		}
+	}
 }
