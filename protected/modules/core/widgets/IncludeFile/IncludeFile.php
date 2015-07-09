@@ -4,6 +4,12 @@
  * User: HUNTKEY
  * Date: 30.03.2015
  * Time: 10:49
+ *
+ * USAGE
+ * $this->widget("application.modules.core.widgets.IncludeFile.IncludeFile",array(
+ *  'file'	=> 'email'
+ * ));
+ *
  */
 
 class IncludeFile extends CWidget

@@ -105,4 +105,18 @@ class Controller extends RController
 
 	}
 
+
+
+
+	public function isHome()
+	{
+		if($this->module->id == 'store' && $this->id == 'index' && $this->action->id == 'index')
+		{
+			return true;
+		}
+		return false;
+	}
+
+
+
 }

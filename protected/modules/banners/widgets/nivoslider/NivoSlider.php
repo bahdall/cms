@@ -1,6 +1,13 @@
 <?php
 Yii::import('application.modules.banners.models.*');
 /*
+ * USAGE
+ * $this->widget("application.modules.banners.widgets.nivoslider.NivoSlider", array(
+ * 'width' => '1000',
+ * 'height' => '500',
+ * 'banner_id' => '2',
+ * ));
+ *
  * ENivoSlider widget class file.
  * @author Thiago Otaviani Vidal <thiagovidal@othys.com>
  * @link http://www.othys.com

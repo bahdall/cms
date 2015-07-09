@@ -4,7 +4,7 @@ $(function(){
       var dialog_id = $(this).data('dialog-id');
       var form_id = $(this).data('form-id');
       var content_id = $(this).data('content-id');
-      var url = $("#"+form_id).attr('action');
+      var url = $(this).data('url');
 
 
       $("#"+dialog_id).dialog({
@@ -21,7 +21,17 @@ $(function(){
 
                   $('#'+content_id).elrte('updateSource');
 
-                  var data = $("#"+form_id).serialize();
+                  var YII_CSRF_TOKEN = $("#"+dialog_id).find('input[name=YII_CSRF_TOKEN]').val();
+                  var FileContent = $("#"+dialog_id).find('textarea[name=FileContent]').val();
+                  var FileName = $("#"+dialog_id).find('input[name=FileName]').val();
+                  
+                  var data = {
+                    'YII_CSRF_TOKEN': YII_CSRF_TOKEN,
+                    'FileContent': FileContent,
+                    'FileName': FileName
+                  };
+                  
+                  
                   $.post(url,data , function(data){
                      alert(data);
                      window.location = '';
@@ -29,7 +39,7 @@ $(function(){
                }
                // Uncommenting the following line would hide the text,
                // resulting in the label being used as a tooltip
-               //showText: false
+               // showText: false
             }
          ]
       });
