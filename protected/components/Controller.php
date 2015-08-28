@@ -119,4 +119,25 @@ class Controller extends RController
 
 
 
+	public function beforeAction($action)
+	{
+		$this->setLayout('main');
+		return parent::beforeAction($action);
+	}
+
+
+	public function setLayout($layout)
+	{
+
+		$layoutFile = (Yii::app()->settings->get('core','theme'))?Yii::app()->basePath."/views/layouts/".Yii::app()->settings->get('core','theme').".php" : $this->layout;
+
+
+		if(Yii::app()->settings->get('core','theme') && file_exists($layoutFile) )
+			$this->layout = '//layouts/'.Yii::app()->settings->get('core','theme');
+		else
+			$this->layout = '//layouts/'.$layout;
+	}
+
+
+
 }

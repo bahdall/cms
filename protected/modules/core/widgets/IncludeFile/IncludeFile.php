@@ -27,7 +27,11 @@ class IncludeFile extends CWidget
     {
         $this->id = "includefile_".rand(1,1000).rand(1,1000);
 
-        $path = Yii::getPathOfAlias($this->path);
+        $path = Yii::getPathOfAlias($this->path)."/".Yii::app()->language;
+        if( !file_exists($path) )
+        {
+            mkdir($path);
+        }
         $this->filePath = $path.DIRECTORY_SEPARATOR.$this->file;
         if( file_exists($this->filePath) )$this->content = file_get_contents($this->filePath);
     }
@@ -46,7 +50,7 @@ class IncludeFile extends CWidget
 
     public function render()
     {
-        $path = Yii::getPathOfAlias($this->path);
+        $path = Yii::getPathOfAlias($this->path)."/".Yii::app()->language;
         if( is_dir($path) )
         {
             $this->filePath = $path.DIRECTORY_SEPARATOR.$this->file;
@@ -86,6 +90,7 @@ class IncludeFile extends CWidget
                         data-dialog-id='dialog_".$this->id."'
                         data-form-id='form_".$this->id."'
                         data-content-id='content_".$this->id."'
+                        data-url='".Yii::app()->createUrl('/core/admin/ajax/saveFile')."'
                     ></a> ";
         }
     }

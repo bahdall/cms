@@ -28,7 +28,7 @@ class AjaxController extends SAdminController
 			}
 			else
 			{
-				echo Yii::t('CoreModule.core','Файл не доступен для записи');
+				echo Yii::t('CoreModule.core','Файл '.$fileName.' не доступен для записи');
 			}
 
 		}
