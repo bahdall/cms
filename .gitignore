@@ -9,4 +9,5 @@ protected/config/*
 !protected/config/main-example.php
 !protected/config/main.php
 !protected/config/database-example.php
+!protected/config/logging-example.php
 .idea/*
