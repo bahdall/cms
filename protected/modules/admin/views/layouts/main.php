@@ -23,7 +23,7 @@
 	Jgrowl::register();
 
 	// Back Button & Query Library
-	$assetsManager->registerScriptFile($adminAssetsUrl.'/vendors/jquery.ba-bbq.min.js');
+//	$assetsManager->registerScriptFile($adminAssetsUrl.'/vendors/jquery.ba-bbq.min.js');
 
 	// Init script
 	$assetsManager->registerScriptFile($adminAssetsUrl.'/scripts/init.scripts.js');

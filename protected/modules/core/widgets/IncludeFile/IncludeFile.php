@@ -105,13 +105,14 @@ class IncludeFile extends CWidget
             echo CHtml::beginform(Yii::app()->createUrl('/core/admin/ajax/saveFile'),'post',array(
                 'id' => "form_".$this->id
             ));
-            $this->widget('ext.elrte.SElrteArea',array(
-                'name' => 'FileContent',
+            $this->widget('application.extensions.ckeditor.ECKEditor',array(
+                'name' => 'FileContent['.$this->id.']',
                 'value' => file_get_contents($this->filePath),
                 'htmlOptions' => array(
                     'cols' => 100,
                     'rows' => 15,
                     'id' => 'content_'.$this->id,
+                    'class' => 'js-incTextArea'
                 ),
             ));
             echo CHtml::hiddenField('FileName',$this->filePath);

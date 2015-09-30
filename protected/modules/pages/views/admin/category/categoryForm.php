@@ -25,7 +25,7 @@ return array(
 					)
 				),
 				'description'=>array(
-					'type'=>'SRichTextarea',
+					'type'=>'application.extensions.ckeditor.ECKEditor',
 				),
 			),
 		),

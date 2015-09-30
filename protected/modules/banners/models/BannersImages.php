@@ -170,8 +170,8 @@ class BannersImages extends BaseModel
 		}
 
 		if ($random === true)
-			return StoreImagesConfig::get('url').$this->image.'?'.rand(1, 10000);
-		return StoreImagesConfig::get('url').$this->image;
+			return $this->image.'?'.rand(1, 10000);
+		return $this->image;
 	}
 
 

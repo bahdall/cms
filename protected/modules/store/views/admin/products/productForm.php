@@ -37,10 +37,10 @@ return array(
 					'empty'=>Yii::t('StoreModule.admin', 'Выберите производителя'),
 				),
 				'short_description'=>array(
-					'type'=>'SRichTextarea',
+					'type'=>'application.extensions.ckeditor.ECKEditor',
 				),
 				'full_description'=>array(
-					'type'=>'SRichTextarea',
+					'type'=>'application.extensions.ckeditor.ECKEditor',
 				),
 			),
 		),

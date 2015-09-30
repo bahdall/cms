@@ -384,3 +384,10 @@ div.form legend {
 .eavInput input {
     margin-left: 0 !important;
 }
+
+
+
+div.form .cke_chrome{
+    width: 70%;
+    display: inline-block;
+}

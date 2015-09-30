@@ -14,7 +14,7 @@ class SliderForm extends CFormModel
     public $status;
     public $module_id;
     public $group = 'sliders';
-    public $class = 'application.modules.banners.widgets.nivoslider.ENivoSlider';
+    public $class = 'application.modules.banners.widgets.nivoslider.NivoSlider';
 
 
 
@@ -46,7 +46,7 @@ class SliderForm extends CFormModel
     public function rules()
     {
         return array(
-            array('name, banner_id, width, height, status', 'required'),
+            array('name, banner_id, status', 'required'),
             array('status, banner_id, width, height', 'numerical'),
         );
     }

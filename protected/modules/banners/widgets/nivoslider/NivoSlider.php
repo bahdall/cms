@@ -53,6 +53,7 @@ class NivoSlider extends CWidget
 
 	public function init()
 	{
+		$this->htmlOptions['class'] = 'theme-default';
 		if (isset($this->id)) {
 			$this->htmlOptions['id']=$this->id;
 		} else {
@@ -63,8 +64,6 @@ class NivoSlider extends CWidget
 	
     public function run()
     {
-		$this->htmlOptions['style'] = 'width: '.$this->width.'px; height: '.$this->height.'px;';
-
 		$banner = Banners::model()->findByPK($this->banner_id);
 		$images = $banner->images;
 
@@ -75,7 +74,7 @@ class NivoSlider extends CWidget
 			foreach($images as $image)
 			{
 				$this->images[] = array(
-					'src'         =>   $image->getUrl($this->width."x".$this->height,'cropFromCenter'),
+					'src'         =>   $this->width && $this->height ? $image->getUrl($this->width."x".$this->height,'cropFromCenter') : $image->getUrl(),
 					'caption'     =>   $image->title,
 					'url'         =>   $image->link,
 				);
@@ -131,10 +130,9 @@ class NivoSlider extends CWidget
 			Yii::app()->clientScript->registerCoreScript('jquery');
 			Yii::app()->clientScript->registerScriptFile($baseUrl . '/jquery.nivo.slider.pack.js', CClientScript::POS_HEAD);
 			Yii::app()->clientScript->registerCssFile($baseUrl . '/nivo-slider.css');
+			Yii::app()->clientScript->registerCssFile($baseUrl . '/themes/default/default.css');
 			if (isset($this->cssFile)) {
 				Yii::app()->clientScript->registerCssFile($this->cssFile);
-			} else if($this->fancy) {
-				Yii::app()->clientScript->registerCssFile($baseUrl.'/fancy-nivo-slider.css');
 			}
 		} else {
 			throw new Exception('CNivoSlider - Error: Couldn\'t publish assets.');

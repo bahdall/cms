@@ -11,7 +11,10 @@ class FileManagerController extends SAdminController
 					'root' => Yii::getPathOfAlias('webroot') . '/uploads/',
 					'URL' => Yii::app()->baseUrl . '/uploads/',
 					'rootAlias' => 'Home',
-					'mimeDetect' => 'none'
+					'mimeDetect' => 'none',
+					'driver'        => 'LocalFileSystem',   // driver for accessing file system (REQUIRED)
+					'path'          => Yii::getPathOfAlias('webroot') . '/uploads/',         // path to files (REQUIRED)
+					'accessControl' => 'access'             // disable and hide dot starting files (OPTIONAL)
 				)
 			),
 		);

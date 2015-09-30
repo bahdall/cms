@@ -28,7 +28,8 @@ class ServerFileInput extends CInputWidget
 //        $cs->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js');
 
         // elFinder CSS
-        $cs->registerCssFile($this->assetsDir . '/css/elfinder.css');
+        $cs->registerCssFile($this->assetsDir . '/css/elfinder.full.css');
+        $cs->registerCssFile($this->assetsDir . '/css/theme.css');
 
         // elFinder JS
         if (YII_DEBUG) {
@@ -103,7 +104,9 @@ class ServerFileInput extends CInputWidget
 
         $settings = array_merge(array(
                 'places' => "",
-                'rememberLastDir' => false,),
+                'rememberLastDir' => false,
+                'resizable' => false,
+            ),
             $this->settings
         );
 
@@ -113,32 +116,38 @@ class ServerFileInput extends CInputWidget
             'modal' => true,
             'title' => "Files",
         );
-        $settings['editorCallback'] = 'js:function(url) {
-        $(\'#\'+aFieldId).attr(\'value\',url);
-        $(\'#\'+aFieldId+\'_image\').attr(\'src\',url).show();
+        $settings['getFileCallback'] = 'js:function(data) {
+            var url = data["url"];
+            $(\'#'.$id.'\').attr(\'value\',url);
+            $(\'#'.$id.'_image\').attr(\'src\',url).show();
+            $("#elFinderBrowser_'.$id.'").dialog("close");
+            $("#elFinderBrowser_'.$id.'").elfinder("destroy");
         }';
         $settings['closeOnEditorCallback'] = true;
         $connectorUrl = CJavaScript::encode($this->settings['url']);
         $settings = CJavaScript::encode($settings);
         $script = <<<EOD
-        window.elfinderBrowse = function(field_id, connector) {
-            var aFieldId = field_id, aWin = this;
-            if($("#elFinderBrowser").length == 0) {
-                $("body").append($("<div/>").attr("id", "elFinderBrowser"));
-                var settings = $settings;
-                settings["url"] = connector;
-                $("#elFinderBrowser").elfinder(settings);
+            window.elfinderBrowse = function(field_id, connector, settings) {
+                var aFieldId = field_id, aWin = this;
+                if($("#elFinderBrowser").length == 0) {
+
+                    $("body").append($("<div/>").attr("id", "elFinderBrowser_"+aFieldId));
+                    $( "#elFinderBrowser_"+aFieldId ).dialog({ minWidth: 1000, minHeight: 600, resizable: true });
+
+                    settings["url"] = connector;
+                    $("#elFinderBrowser_"+aFieldId).elfinder(settings);
+                }
+                else {
+                    $("#elFinderBrowser_"+aFieldId).dialog('open');
+                    $("#elFinderBrowser_"+aFieldId).elfinder("open", connector);
+                }
             }
-            else {
-                $("#elFinderBrowser").elfinder("open", connector);
-            }
-        }
 EOD;
         $cs = Yii::app()->getClientScript();
         $cs->registerScript('ServerFileInput#global', $script);
 
         $js = //'$("#'.$id.'").focus(function(){window.elfinderBrowse("'.$name.'")});'.
-            '$("#' . $id . 'browse").click(function(){window.elfinderBrowse("' . $id . '", '.$connectorUrl.')});';
+            '$("#' . $id . 'browse").click(function(){window.elfinderBrowse("' . $id . '", '.$connectorUrl.', '.$settings.')});';
 
 
         $cs->registerScript('ServerFileInput#' . $id, $js);

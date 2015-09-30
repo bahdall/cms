@@ -5,9 +5,13 @@
  * Date: 28.03.2015
  * Time: 16:49
  */
+
+
+echo CHtml::openTag('div', array('class' => 'slider-wrapper theme-default'))."\n";
 echo CHtml::openTag('div', $this->htmlOptions)."\n";
 
 if(count($this->images)) {
     $this->renderImages($this->images);
 }
+echo CHtml::closeTag('div')."\n";
 echo CHtml::closeTag('div')."\n";

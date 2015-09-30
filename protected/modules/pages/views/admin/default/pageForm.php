@@ -23,10 +23,10 @@ return array(
 					'empty'=>'---',
 				),
 				'short_description'=>array(
-					'type'=>'SRichTextarea',
+					'type'=>'application.extensions.ckeditor.ECKEditor',
 				),
 				'full_description'=>array(
-					'type'=>'SRichTextarea',
+					'type'=>'application.extensions.ckeditor.ECKEditor',
 				),
 			),
 		),
