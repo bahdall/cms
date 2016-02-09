@@ -97,6 +97,7 @@ return array(
 				'/processPayment',
 				'/accounting1c/default/',
 				'/filemanager/connector',
+				'/filemanager/elfinderconnector',
 			)
 		),
 		'errorHandler'=>array(

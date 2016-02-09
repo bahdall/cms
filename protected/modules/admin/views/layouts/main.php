@@ -4,6 +4,7 @@
 
 	$assetsManager = Yii::app()->clientScript;
 	$assetsManager->registerCoreScript('jquery');
+	$assetsManager->registerCoreScript('bbq');
 	$assetsManager->registerCoreScript('jquery.ui');
 
 	// Disable jquery-ui default theme
