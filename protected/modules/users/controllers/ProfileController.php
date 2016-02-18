@@ -15,7 +15,7 @@ class ProfileController extends Controller
 	{
 		if(Yii::app()->user->isGuest)
 			throw new CHttpException(404, Yii::t('UsersModule.core', 'Ошибка доступа.'));
-		return true;
+		return parent::beforeAction($action);
 	}
 
 	/**

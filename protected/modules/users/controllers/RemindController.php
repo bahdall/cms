@@ -16,7 +16,7 @@ class RemindController extends Controller
 	{
 		// Allow only gues access
 		if(Yii::app()->user->isGuest)
-			return true;
+			return parent::beforeAction($action);
 		else
 			$this->redirect('/');
 	}

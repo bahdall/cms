@@ -173,6 +173,7 @@ class SystemModules extends BaseModel
 	public static function install($name)
 	{
 		$moduleInfo = SystemModules::loadInfoFile($name);
+		self::loadModuleClass($name)->beforeInstall();
 		$model = new SystemModules;
 		$model->name = $name;
 		$model->enabled = 1;

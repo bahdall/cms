@@ -43,7 +43,15 @@ class SWebApplication extends CWebApplication
 		if($modules)
 		{
 			foreach($modules as $module)
+			{
 				$this->setModules(array($module->name));
+
+				$_module = $this->getModule($module->name);
+				if($_module->preload)
+				{
+					$_module->preload();
+				}
+			}
 		}
 	}
 

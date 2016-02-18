@@ -75,7 +75,7 @@ class CategoryController extends Controller
 				$this->redirect(Yii::app()->request->addUrlParam('/store/category/view', $data));
 		}
 
-		return true;
+		return parent::beforeAction($action);
 	}
 
 	/**

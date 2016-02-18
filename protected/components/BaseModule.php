@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Base admin module 
- * 
+ * Base admin module
+ *
  * @uses CWebModule
  * @package Admin
  * @version $id$
@@ -11,6 +11,7 @@ class BaseModule extends CWebModule {
 
 	public $_assetsUrl = null;
 	public $_module_id;
+	public $preload=false;
 
 	public function initAdmin()
 	{
@@ -64,6 +65,12 @@ class BaseModule extends CWebModule {
 	 * Method will be called after module installed
 	 */
 	public function afterInstall()
+	{}
+
+	/**
+	 * Method will be called after module installed
+	 */
+	public function beforeInstall()
 	{}
 
 	/**
