@@ -10,5 +10,5 @@ return array(
 	'author'=>'tsharipov777@gmail.com',
 	'version'=>'0.1',
 	'description'=>Yii::t('TranslateModule.core', 'Управление переводами сайта.'),
-	'url'=>'', # Url to module home page.
+	'config_url'=> Yii::app()->createUrl('/translate/admin/default/info'), # Url to module home page.
 );
