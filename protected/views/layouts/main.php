@@ -183,5 +183,11 @@
 		</div>
 	</div>
 </div>
+<?php
+if(Yii::app()->user->checkAccess('admin'))
+{
+	Yii::app()->translate->renderMissingTranslationsEditor();
+}
+?>
 </body>
 </html>
