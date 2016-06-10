@@ -23,7 +23,24 @@ $(function(){
       row.find(".j-elfinder #"+id).attr('id', option_name);
       row.find(".j-elfinder #"+id+"_image").attr('id', option_name+"_image");
 
-      $("#"+option_name+"browse").click(function(){window.elfinderBrowse(option_name, '/filemanager/elfinderconnector')});
+       $("#"+option_name+"browse").click(function(){window.elfinderBrowse(option_name, '/filemanager/elfinderconnector',
+           {'places':'',
+               'rememberLastDir':false,
+               'resizable':false,
+               'open':'alert(\"dsadasdsadas\")',
+               'url':'/filemanager/elfinderconnector',
+               'lang':'ru',
+               'dialog':{'zIndex':400001,'width':900,'modal':true,'title':'Files'},
+               'getFileCallback':function(data) {
+                   var url = data["url"];
+                   $('#'+option_name).attr('value',url);
+                   $('#'+option_name+'_image').attr('src',url).show();
+                   $("#elFinderBrowser_"+option_name).dialog("close");
+                   $("#elFinderBrowser_"+option_name).elfinder("destroy");
+               },
+               'closeOnEditorCallback':true
+           })
+       });
 
       return false;
    });
