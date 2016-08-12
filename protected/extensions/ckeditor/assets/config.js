@@ -9,6 +9,9 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 
 	// The toolbar groups arrangement, optimized for two toolbar rows.
+
+    config.protectedSource.push(/<[a-z]*[a-z\s\=\"\'\-]*><\/[\s\S][^/]*?>/g);
+
 	config.toolbarGroups = [
 		{ name: 'others' },
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
@@ -39,5 +42,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// при нажатии enter добавляем br
 	config.enterMode = CKEDITOR.ENTER_BR;
 	config.shiftEnterMode = CKEDITOR.ENTER_BR;
+
+    config.allowedContent = true;
 	
 };
